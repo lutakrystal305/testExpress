@@ -1,16 +1,24 @@
 extends ../layouts/common
 block content
 
-	h1 Users
+	h1 
+		span.mr-2 Users
+		a.btn.btn-primary(href="/users/create") New a user
 
-	a(href="/users/create") New a user
+	.d-flex.align-items-center
+		form.ml-auto(action="/users/search", method: "GET", class="d-flex")
+			input(type="text", name="q", class="form-control")
+			button(class="btn btn-primary ml-2") Search
 
-	form(action="/users/search", method: "GET")
-		input(type="text", name="q")
-		button Search
-	ul 	
+	table.table
+		tr
+			th Name
+			th Date of birth
+			th Actions
+
 		each user in users
-			li
-				span= user.name
-				span &nbsp
-				a(href="/users/" +user.id) View
+			tr
+				td= user.name
+				td= user.date
+				td
+					a.btn.btn-success(href="/users/" +user.id) View
