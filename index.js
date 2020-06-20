@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 
-
 var usersRoute= require('./Route/users.route');
 var authRoute= require('./Route/auth.route');
 
@@ -13,7 +12,7 @@ var cookieParser = require('cookie-parser');
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser());
+app.use(cookieParser('sanmfnasmdnasd123120'));
 
 
 var port= 3005;
