@@ -1,10 +1,20 @@
 var express = require('express');
 var app = express();
+
+
 var usersRoute= require('./Route/users.route');
+var authRoute= require('./Route/auth.route');
+
+var authMiddleware= require('./middleware/auth.middleware');
+
+
 var bodyParser= require('body-parser');
+var cookieParser = require('cookie-parser');
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser());
+
 
 var port= 3005;
 
@@ -21,7 +31,8 @@ app.get('/',function(req, res){
   {name: 'Thúy Hằng'}
 );
 });
-app.use('/users', usersRoute);
+app.use('/users', authMiddleware.requireAuth, usersRoute);
+app.use('/auth', authRoute);
 app.listen(port, function() {
 	console.log('Example app listening on port'+port);
 });

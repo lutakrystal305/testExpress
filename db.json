@@ -10,7 +10,9 @@
     },
     {
       "name": "Văn Thái",
-      "id": "A7e7lp7LE"
+      "id": "A7e7lp7LE",
+      "email": "nguyenvanthai305@gido.com",
+      "password": "00a1bbbac74730f8a176bb2db59a120e"
     },
     {
       "name": "Ziyech",
@@ -64,6 +66,21 @@
       "name": "Thúy Hằng",
       "date": "27/07/2000",
       "id": "RUJNWcTBo"
+    },
+    {
+      "name": "Mane",
+      "date": "13/01/1887",
+      "id": "6lwiPpedn"
+    },
+    {
+      "name": "Cancello",
+      "date": "25/05/2000",
+      "id": "2ou-XepPz"
+    },
+    {
+      "name": "Kyle Walker",
+      "date": "15/05/2000",
+      "id": "fWRGZLSuu"
     }
   ]
 }

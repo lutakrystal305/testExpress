@@ -17,25 +17,14 @@ module.exports.search = function(req, res){
 	})
 }
 module.exports.create = function(req, res){
+	console.log(req.cookies);
 	res.render('users/create');
+
 };
 module.exports.postCreate = function(req, res){
 	req.body.id = shortid.generate();
-	var errors= [];
 
-	if (!req.body.name) {
-		errors.push('Name is required.');
-	}
-	if (!req.body.date) {
-		errors.push('Date is required.');
-	}
-	if (errors.length) {
-		res.render('users/create', {
-			errors: errors,
-			values: req.body
-		});
-		return;
-	}
+	console.log(res.locals);
 
 	db.get('users').push(req.body).write();
 	res.redirect('/users');
