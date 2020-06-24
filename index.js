@@ -3,6 +3,7 @@ var app = express();
 
 var usersRoute= require('./Route/users.route');
 var authRoute= require('./Route/auth.route');
+var productRoute= require('./Route/product.route');
 
 var authMiddleware= require('./middleware/auth.middleware');
 
@@ -32,6 +33,8 @@ app.get('/',function(req, res){
 });
 app.use('/users', authMiddleware.requireAuth, usersRoute);
 app.use('/auth', authRoute);
+app.use('/products', productRoute);
+
 app.listen(port, function() {
 	console.log('Example app listening on port'+port);
 });
