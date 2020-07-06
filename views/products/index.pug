@@ -11,5 +11,18 @@ block content
 					.card-body
 						h5.card-title=product.name
 						p.card-text=product.description
-						a.btn.btn-primary(href='#') Buy now
+						a.btn.btn-primary(href='/cart/add/'+ product.id) Add to cart
+	nav(aria-label='Page navigation example')
+		ul.pagination
+			li.page-item
+				a.page-link(href=prePage.url)= prePage.number
+			li.page-item
+				a.page-link(href='topUrl')=currentPage
+			li.page-item
+				a.page-link(href=nextPage.url)= nextPage.number
+			li.page-item
+				a.page-link(href='#') ... 
+			li.page-item
+				a.page-link(href=endPage.url)= endPage.number 
+
 
