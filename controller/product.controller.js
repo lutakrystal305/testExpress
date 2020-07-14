@@ -1,6 +1,8 @@
-var db= require('../db');
+var Product= require('../models/product.model');
 
-module.exports.index= function(req, res) {
+module.exports.index= async function(req, res) {
+	var products = await Product.find();
+	var count = await Product.countDocuments();
 	var page= parseInt(req.query.page)|| 1;
 	var perPage= 8;
 	var begin= (page-1)*perPage;
@@ -14,19 +16,19 @@ module.exports.index= function(req, res) {
 	prePage.url='/products?page='+(page-1);
 	prePage.number= page-1;
 
-	if ((db.get('products').size() % perPage) !==0) {
-		endPage= parseInt(Math.floor(db.get('products').size()/perPage)+1);
+	if ((count % perPage) !==0) {
+		endPage= parseInt(Math.floor(count/perPage)+1);
 	}
 	else {
-		endPage=db.get('products').size()/perPage;
+		endPage=count/perPage;
 	}
 
 
 	var start= (page-1)*perPage;
 	var end= page*perPage;
-
+	var productsN=await Product.find().limit(perPage).skip(begin);
 	res.render('products/index', {
-		products: db.get('products').drop(begin).take(perPage).value(),
+		products: productsN,
 		currentPage: page,
 		nextPage: nextPage,
 		prePage: prePage,
@@ -35,5 +37,5 @@ module.exports.index= function(req, res) {
 			url: '/products?page=' + endPage,
 			number: endPage
 		}
-	});
+	})
 };

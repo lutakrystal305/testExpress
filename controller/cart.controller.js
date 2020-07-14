@@ -1,4 +1,7 @@
-var db = require('../db');
+var mongoose= require('mongoose');
+
+
+var Session= require('../models/session.model');
 
 module.exports.addToCart = function(req, res, next) {
   var productId = req.params.productId;
@@ -11,12 +14,12 @@ module.exports.addToCart = function(req, res, next) {
 
   var count = db
     .get('sessions')
-    .find({ id: sessionId })
+    .find({ _id: sessionId })
     .get('cart.' + productId, 0)
     .value();
 
   db.get('sessions')
-    .find({ id: sessionId })
+    .find({ sId: sessionId })
     .set('cart.' + productId, count + 1)
     .write();
 
