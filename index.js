@@ -31,7 +31,7 @@ app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(sessionMiddleware);
 
 
-var port= 3005;
+var port= process.env.PORT || 3005;
 
 
 
