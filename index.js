@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var csurf = require('csurf');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/express-demo');
+mongoose.connect('mongodb+srv://lutakrystal:*****@cluster0.vx61n.mongodb.net/express-demo?authSource=admin&replicaSet=atlas-i6dka2-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Community&retryWrites=true&ssl=true');
 
 
 var usersRoute= require('./Route/users.route');
