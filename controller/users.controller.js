@@ -29,11 +29,15 @@ module.exports.create = function(req, res){
 	res.render('users/create');
 
 };
-module.exports.postCreate = function(req, res){
-	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
-	var user= new User(req.body);
-	user.save();
-	res.redirect('/users');
+module.exports.postCreate =async function(req, res, next){
+	try {
+		req.body.avatar = req.file.path.split('\\').slice(1).join('/');
+		var user=await new User(req.body);
+		user.save();
+		res.redirect('/users');
+	} catch (error) {
+		next(error);
+	}
 }
 module.exports.view = async function(req, res, next) {
 	try {
