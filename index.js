@@ -8,8 +8,8 @@ var cookieParser = require('cookie-parser');
 var csurf = require('csurf');
 var mongoose = require('mongoose');
 
-var password= process.env.PASSWORD;
-mongoose.connect('mongodb+srv://lutakrystal:password@cluster0.vx61n.mongodb.net/test?authSource=admin&replicaSet=atlas-i6dka2-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true');
+
+mongoose.connect('mongodb+srv://lutakrystal:vanthai305@cluster0.vx61n.mongodb.net/test');
 
 
 var usersRoute= require('./Route/users.route');
