@@ -7,7 +7,7 @@ var User= require('../models/user.model');
 module.exports.login= function (req, res) {
 	res.render('auth/login');
 }
-module.exports.postLogin= async function(req, res,next) {
+module.exports.postLogin= async function(req, res, next) {
 	try {	
 		var email = req.body.email;
 		var password = req.body.password;
