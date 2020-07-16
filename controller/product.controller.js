@@ -1,7 +1,8 @@
 var Product= require('../models/product.model');
 
 module.exports.index= async function(req, res, next) {
-	try {var products = await Product.find();
+	try {
+		var products = await Product.find();
 		var count = await Product.countDocuments();
 		var page= parseInt(req.query.page)|| 1;
 		var perPage= 8;

@@ -1,20 +1,28 @@
 var User= require('../models/user.model');
 
 
-module.exports.index = async function(req, res) {
-	var users=await User.find();
-	res.render('users/index', {
-	users: users
-});
+module.exports.index = async function(req, res, next) {
+	try {
+		var users=await User.find();
+		res.render('users/index', {
+		users: users
+		});
+	} catch(error) {
+		next(error);
+	}
 }
-module.exports.search = async function(req, res){
-	var q=req.query.q;
-	var matchedUsers =await User.find().filter(function(user){
-		return user.name.toLowerCase().indexOf(q.toLowerCase()) !== -1;
-	});
-	res.render('users/index', {
-		users: matchedUsers
-	})
+module.exports.search = async function(req, res, next){
+	try {
+		var q=req.query.q;
+		var matchedUsers =await User.find().filter(function(user){
+			return user.name.toLowerCase().indexOf(q.toLowerCase()) !== -1;
+		});
+		res.render('users/index', {
+			users: matchedUsers
+		})
+	} catch(error) {
+		next(error);
+	}
 }
 module.exports.create = function(req, res){
 	console.log(req.cookies);
@@ -27,10 +35,14 @@ module.exports.postCreate = function(req, res){
 	user.save();
 	res.redirect('/users');
 }
-module.exports.view = async function(req,res) {
-	var id= req.params.id;
-	user= await User.findOne({_id: id});
-	res.render('users/view', {
-		user: user
-	});
+module.exports.view = async function(req, res, next) {
+	try {
+		var id= req.params.id;
+		user= await User.findOne({_id: id});
+		res.render('users/view', {
+			user: user
+		});
+	} catch(error) {
+		next(error);
+	}
 };
