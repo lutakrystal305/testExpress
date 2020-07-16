@@ -9,7 +9,7 @@ var csurf = require('csurf');
 var mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb+srv://lutakrystal:vanthai305@cluster0.vx61n.mongodb.net/test');
+mongoose.connect('mongodb+srv://lutakrystal:vanthai305@cluster0.vx61n.mongodb.net/express-demo');
 
 
 var usersRoute= require('./Route/users.route');
