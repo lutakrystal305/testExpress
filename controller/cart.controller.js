@@ -3,7 +3,7 @@ var mongoose= require('mongoose');
 
 var Session= require('../models/session.model');
 
-module.exports.addToCart = function(req, res, next) {
+module.exports.addToCart = async function(req, res, next) {
   var productId = req.params.productId;
   var sessionId = req.signedCookies.sessionId;
 
@@ -12,16 +12,7 @@ module.exports.addToCart = function(req, res, next) {
     return;
   }
 
-  var count = db
-    .get('sessions')
-    .find({ _id: sessionId })
-    .get('cart.' + productId, 0)
-    .value();
-
-  db.get('sessions')
-    .find({ sId: sessionId })
-    .set('cart.' + productId, count + 1)
-    .write();
-
+await Session.findOneAndUpdate({_id: sessionId},
+ {$inc: {["cart." + productId]:1}});
   res.redirect('/products');
 };
